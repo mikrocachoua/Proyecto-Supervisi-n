@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisión KAM</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="images/logo.png" alt="Logotipo de la Empresa">
+        </header>
+        <h1>Supervisión KAM</h1>
+        <label for="proceso">Seleccionar Proceso:</label>
+        <select id="proceso" onchange="cambiarProceso()">
+            <option value="catalogacion">Catalogación</option>
+            <option value="supervision">Supervisión</option>
+        </select>
+        
+        <!-- 📌 Formulario de Catalogación -->
+        <form id="catalogacionForm" style="display:none;" onsubmit="enviarCatalogacion(event)">
+            <h2>📝 Proceso de Catalogación</h2>
+            <input type="text" id="centroConsumo" placeholder="🏢 Nombre del Centro de Consumo" required>
+            <input type="text" id="nombreContacto" placeholder="👤 Nombre del Contacto" required>
+            <input type="text" id="cargo" placeholder="📌 Cargo" required>
+            <input type="email" id="correo" placeholder="✉️ Correo Electrónico" required>
+            <input type="tel" id="telefono" placeholder="📞 Teléfono" required>
+            <input type="text" id="area" placeholder="🏢 Área" required>
+            
+            <label for="estadoCatalogacion">📊 Estado de Catalogación:</label>
+            <select id="estadoCatalogacion" required onchange="mostrarSeccionCatalogacion()">
+                <option value="proceso">📌 Catalogación en Proceso</option>
+                <option value="exitosa">🎉 Catalogación Exitosa</option>
+                <option value="rechazo">❌ Rechazo</option>
+            </select>
+            
+            <div id="catalogacionProceso" style="display:none;">
+                <textarea id="siguientesPasos" placeholder="📌 Siguientes Pasos" rows="3"></textarea>
+            </div>
+            
+            <div id="catalogacionExitosa" style="display:none;">
+                <input type="date" id="fechaCatalogacion" placeholder="📅 Fecha de Catalogación">
+                <input type="text" id="responsable" placeholder="👤 Responsable">
+                <input type="file" id="convenio" accept=".pdf,.doc,.docx">
+            </div>
+            
+            <div id="catalogacionRechazo" style="display:none;">
+                <textarea id="motivoRechazo" placeholder="❌ Motivo del Rechazo" rows="4"></textarea>
+            </div>
+            
+            <button type="submit">✅ Registrar Catalogación</button>
+        </form>
+        
+        <!-- 📌 Formulario de Supervisión -->
+        <form id="supervisionForm" style="display:none;" onsubmit="enviarSupervision(event)">
+            <h2>📋 Formulario de Supervisión</h2>
+            <fieldset>
+                <legend>🏢 Identificación del centro de consumo</legend>
+                <input type="text" id="supervisionCentroConsumo" placeholder="🏢 Centro de Consumo" required>
+                <input type="date" id="fechaVisita" placeholder="📅 Fecha de la Visita" required>
+            </fieldset>
+            <fieldset>
+                <legend>📦 Inventario y visibilidad del producto</legend>
+                <input type="number" id="inventarioBodega" placeholder="📦 Inventario en Bodega (0-100)" min="0" max="100" required>
+                <input type="number" id="inventarioBarra" placeholder="🍸 Inventario en Barra (0-100)" min="0" max="100" required>
+            </fieldset>
+            <button type="submit">✅ Registrar Supervisión</button>
+        </form>
+    </div>
+</body>
+</html>
